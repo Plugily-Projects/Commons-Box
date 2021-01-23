@@ -84,7 +84,7 @@ public class MiscUtils {
     }
 
   public static void sendActionBar(Player player, String message) {
-    if (Version.isCurrentEqualOrHigher(Version.v1_16_R1)) {
+    if (Version.isCurrentEqualOrHigher(Version.v1_16_R3)) {
       player.spigot().sendMessage(net.md_5.bungee.api.ChatMessageType.ACTION_BAR,
         player.getUniqueId(), new net.md_5.bungee.api.chat.ComponentBuilder(message).create());
     } else {
