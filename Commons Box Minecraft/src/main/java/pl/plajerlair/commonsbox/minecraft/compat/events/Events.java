@@ -53,14 +53,13 @@ public class Events implements Listener {
 
   @EventHandler
   public void onPlayerPickupArrow(PlayerPickupArrowEvent event) {
-    Projectile projectile;
+    CBPlayerPickupArrow cbEvent;
     try {
-      projectile = (Projectile) event.getClass().getDeclaredMethod("getArrow").invoke(event);
+      Projectile projectile = (Projectile) event.getClass().getDeclaredMethod("getArrow").invoke(event);
+      cbEvent = new CBPlayerPickupArrow(event.getPlayer(), event.getItem(), projectile, event.getRemaining(), VersionUtils.isPaper() && event.getFlyAtPlayer());
     } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-      e.printStackTrace();
-      return;
+      cbEvent = new CBPlayerPickupArrow(event.getPlayer(), event.getItem(), null, 0, false);
     }
-    CBPlayerPickupArrow cbEvent = new CBPlayerPickupArrow(event.getPlayer(), event.getItem(), projectile, event.getRemaining(), VersionUtils.isPaper() && event.getFlyAtPlayer());
     Bukkit.getPluginManager().callEvent(cbEvent);
     if(cbEvent.isCancelled()) {
       event.setCancelled(true);
