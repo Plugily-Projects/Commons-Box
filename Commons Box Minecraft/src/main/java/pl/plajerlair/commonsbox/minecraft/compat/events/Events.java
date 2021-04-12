@@ -19,6 +19,9 @@ import pl.plajerlair.commonsbox.minecraft.compat.events.api.CBPlayerInteractEnti
 import pl.plajerlair.commonsbox.minecraft.compat.events.api.CBPlayerInteractEvent;
 import pl.plajerlair.commonsbox.minecraft.compat.events.api.CBPlayerPickupArrow;
 import pl.plajerlair.commonsbox.minecraft.compat.events.api.CBPlayerSwapHandItemsEvent;
+
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * @author Tigerpanzer_02
  * <p>
@@ -50,7 +53,14 @@ public class Events implements Listener {
 
   @EventHandler
   public void onPlayerPickupArrow(PlayerPickupArrowEvent event) {
-    CBPlayerPickupArrow cbEvent = new CBPlayerPickupArrow(event.getPlayer(), event.getItem(), (Projectile) event.getArrow(), event.getRemaining(), VersionUtils.isPaper() ? event.getFlyAtPlayer() : false);
+    Projectile projectile;
+    try {
+      projectile = (Projectile) event.getClass().getDeclaredMethod("getArrow").invoke(event);
+    } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+      e.printStackTrace();
+      return;
+    }
+    CBPlayerPickupArrow cbEvent = new CBPlayerPickupArrow(event.getPlayer(), event.getItem(), projectile, event.getRemaining(), VersionUtils.isPaper() && event.getFlyAtPlayer());
     Bukkit.getPluginManager().callEvent(cbEvent);
     if(cbEvent.isCancelled()) {
       event.setCancelled(true);
