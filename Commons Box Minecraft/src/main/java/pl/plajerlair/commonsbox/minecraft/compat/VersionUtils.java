@@ -32,7 +32,6 @@ import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -100,16 +99,11 @@ public class VersionUtils {
 
   public static SkullMeta setPlayerHead(Player player, SkullMeta meta) {
     if(ServerVersion.Version.isCurrentHigher(ServerVersion.Version.v1_12_R1)) {
-      if(isPaper && player.getPlayerProfile().hasTextures()) {
-        return CompletableFuture.supplyAsync(() -> {
-          meta.setPlayerProfile(player.getPlayerProfile());
-          return meta;
-        }).exceptionally(e -> {
-          Bukkit.getConsoleSender().sendMessage("[Commons Box] Retrieving player profile of " + player.getName() + " failed!");
-          return meta;
-        }).join();
+      if(isPaper) {
+        meta.setPlayerProfile(player.getPlayerProfile());
+      } else {
+        meta.setOwningPlayer(player);
       }
-      meta.setOwningPlayer(player);
     } else {
       meta.setOwner(player.getName());
     }
