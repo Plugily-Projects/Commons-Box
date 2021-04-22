@@ -100,7 +100,9 @@ public class VersionUtils {
   public static SkullMeta setPlayerHead(Player player, SkullMeta meta) {
     if(ServerVersion.Version.isCurrentHigher(ServerVersion.Version.v1_12_R1)) {
       if(isPaper) {
-        meta.setPlayerProfile(player.getPlayerProfile());
+        if (player.getPlayerProfile().hasTextures()) {
+          meta.setPlayerProfile(player.getPlayerProfile());
+        }
       } else {
         meta.setOwningPlayer(player);
       }
