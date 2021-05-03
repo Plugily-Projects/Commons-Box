@@ -32,7 +32,7 @@ public class MigratorUtils {
     try {
       List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
       List<String> updatedLines = lines.stream().filter(s -> !s.contains(lineToRemove)).collect(Collectors.toList());
-      Files.write(file.toPath(), updatedLines);
+      Files.write(file.toPath(), updatedLines, StandardCharsets.UTF_8);
     } catch(IOException e) {
       e.printStackTrace();
       Bukkit.getLogger().warning("[CommonsBox] Something went horribly wrong with migration! Please contact Plugily Projects!");
