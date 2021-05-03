@@ -2,14 +2,13 @@ package pl.plajerlair.commonsbox.minecraft.migrator;
 
 import org.bukkit.Bukkit;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Plajer
@@ -31,26 +30,9 @@ public class MigratorUtils {
    */
   public static void removeLineFromFile(File file, String lineToRemove) {
     try {
-      List<String> lines = new ArrayList<>();
-
-      // READ
-      BufferedReader bufferedReader = Files.newBufferedReader(file.toPath(), StandardCharsets.UTF_8);
-      String line = bufferedReader.readLine();
-      while (line != null) {
-        if (!line.contains(lineToRemove)) {
-          lines.add(line);
-        }
-        line = bufferedReader.readLine();
-      }
-      bufferedReader.close();
-
-      // WRITE
-      FileWriter fileWriter = new FileWriter(file, false);
-      for (String s : lines) {
-        fileWriter.write(s);
-      }
-      fileWriter.flush();
-      fileWriter.close();
+      List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
+      List<String> updatedLines = lines.stream().filter(s -> !s.contains(lineToRemove)).collect(Collectors.toList());
+      Files.write(file.toPath(), updatedLines);
     } catch(IOException e) {
       e.printStackTrace();
       Bukkit.getLogger().warning("[CommonsBox] Something went horribly wrong with migration! Please contact Plugily Projects!");
