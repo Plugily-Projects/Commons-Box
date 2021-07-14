@@ -24,12 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      - name: Bump Version
-        id: bump
-        uses: Plugily-Projects/maven-version-bump-action@dev
-        with:
-          github-token: ${{ secrets.github_token }}
             
       - uses: actions/cache@v2
         with:
