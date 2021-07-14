@@ -1,5 +1,6 @@
 package plugily.projects.commonsbox.minecraft.compat;
 
+import com.cryptomorin.xseries.particles.XParticle;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -22,7 +23,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-import plugily.projects.commonsbox.minecraft.compat.xseries.XParticle;
 import plugily.projects.commonsbox.minecraft.compat.xseries.XParticleLegacy;
 import plugily.projects.commonsbox.minecraft.misc.MiscUtils;
 

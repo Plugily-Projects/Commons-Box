@@ -18,13 +18,13 @@
 
 package plugily.projects.commonsbox.minecraft.helper;
 
+import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-import plugily.projects.commonsbox.minecraft.compat.xseries.XMaterial;
 
 /**
  * Created by Tigerpanzer_02 on 17.12.2020.

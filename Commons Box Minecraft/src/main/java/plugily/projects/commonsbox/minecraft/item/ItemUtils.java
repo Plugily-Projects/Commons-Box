@@ -1,11 +1,11 @@
 package plugily.projects.commonsbox.minecraft.item;
 
+import com.cryptomorin.xseries.XMaterial;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import plugily.projects.commonsbox.minecraft.compat.ServerVersion;
-import plugily.projects.commonsbox.minecraft.compat.xseries.XMaterial;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

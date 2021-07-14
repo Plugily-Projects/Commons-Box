@@ -21,6 +21,7 @@
  */
 package plugily.projects.commonsbox.minecraft.compat.xseries;
 
+import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.Material;
 
 /**

@@ -18,10 +18,10 @@
 
 package plugily.projects.commonsbox.minecraft.helper;
 
+import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
-import plugily.projects.commonsbox.minecraft.compat.xseries.XMaterial;
 
 import java.util.HashMap;
 import java.util.Map;
